@@ -1,0 +1,214 @@
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #fafafa;
+  color: #222;
+}
+
+/* HEADER */
+.main-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  padding: 12px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+
+
+
+.header-nav a {
+  margin: 0 10px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #444;
+}
+
+.header-nav a.active {
+  color: #0077ff;
+  font-weight: 600;
+}
+
+/* HERO */
+.hero-activities {
+  margin-top: 110px;
+  text-align: center;
+  padding: 70px 20px;
+  background: linear-gradient(135deg, #0077ff55, #00c1ff55);
+}
+
+.hero-activities h1{
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.section h2 {
+  margin-left: 30px;
+}
+
+/* GRID ACTIVIDADES */
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 40px;
+}
+
+.activity-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.activity-card:hover {
+  transform: translateY(-4px);
+}
+
+.activity-img {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+}
+
+.activity-body {
+  padding: 15px;
+}
+
+.activity-body h3 {
+  margin: 5px 0;
+}
+
+.activity-body p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* MODAL */
+.act-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden { display: none; }
+
+.act-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+
+.act-card {
+  position: relative;
+  background: white;
+  width: 85%;
+  max-width: 950px;
+  border-radius: 14px;
+  padding: 20px;
+  z-index: 5;
+}
+
+.close-btn {
+  float: right;
+  font-size: 26px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.act-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.act-slider {
+  position: relative;
+}
+
+.act-slides div {
+  height: 280px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+}
+
+.act-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* FOOTER */
+.footer {
+    margin-top:24px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+
+@font-face {
+    font-family: 'MiFuente';
+    src: url('Fuentes/game_of_squids/Game Of Squids.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.brand {
+    font-family: 'MiFuente', sans-serif; /* ← AQUI */
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    color: #ff5757;
+}
+
+.nav-btn.active, .nav-menu a.active {
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color: #053216;
+  box-shadow: 0 10px 30px rgba(111,191,115,0.14);
+}
+
+.nav-btn:hover, .nav-menu a:hover, .nav-btn:focus {
+  transform: translateY(-4px);
+  color: var(--text);
+  box-shadow: 0 10px 28px rgba(107,191,115,0.12);
+  outline: none;
+}
+
+/* --- Restaurar el estilo NORMAL para el botón activo --- */
+.nav-btn.active,
+.nav-menu a.active {
+  background: transparent !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  border: 1px solid #000 !important; /* borde negro finito */
+}
+
+/* Evita que el hover vuelva a meterle efectos al botón activo */
+.nav-btn.active:hover,
+.nav-menu a.active:hover {
+  background: transparent !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+

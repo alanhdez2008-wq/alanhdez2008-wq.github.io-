@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIA</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===================== HEADER FIJO ===================== -->
+<header class="main-header">
+    <div class="header-left">
+        <a href="index.html"><img src="Imagenes/logo.jpg" alt="" class="logo"></a>
+        <span class="brand">VIA</span>
+    </div>
+
+    <nav class="header-nav">
+        <a href="index.html" class="nav-btn"><span>🏡</span> Inicio</a>
+        <a href="activities.html" class="nav-btn"><span>🎯</span> Actividades</a>
+        <a href="descubrir.html" class="nav-btn"><span>🔎</span> Descubrir</a>
+        <a href="mapa.html" class="nav-btn"><span>🌎</span> Mapa</a>
+    </nav>
+
+    <div class="header-right">
+        <a href="login-register.html" class="login-btn-special">Iniciar Sesión</a>
+    </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+    <h1>Joyas ocultas en el mundo</h1>
+    <p>Descubre nuevos destinos y rompe la barrera de lo desconocido.</p>
+</section>
+
+<!-- ===================== DESTINOS ===================== -->
+<section id="destinos" class="espacio-izquierda-margin">
+    <h2>Destinos populares</h2>
+
+    <div id="destinosGrid" class="destinos-grid">
+      <!-- GENERADO POR JS -->
+    </div>
+</section>
+
+<!-- ===================== SLIDER ===================== -->
+<div id="sliderModal" class="slider-modal hidden">
+    <div class="slider-content">
+      <span id="closeSlider">×</span>
+      <div class="slider-images" id="sliderImages"></div>
+
+      <button id="prevSlide">&#10094;</button>
+      <button id="nextSlide">&#10095;</button>
+    </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+    <p>© 2025 VIA — Todos los derechos reservados.</p>
+</footer>
+
+<!-- DESTINATION DETAIL MODAL -->
+<div id="destModal" class="dest-modal hidden" aria-hidden="true">
+  <div class="dest-modal-bg" id="destModalBg"></div>
+
+  <div class="dest-modal-card" role="dialog" aria-modal="true">
+    <button id="closeDestModal" class="dest-close" aria-label="Cerrar">×</button>
+
+    <div class="dest-grid">
+      <div class="dest-slider">
+        <div id="destSlides" class="dest-slides"></div>
+        <button id="destPrev" class="dest-nav dest-prev">&#10094;</button>
+        <button id="destNext" class="dest-nav dest-next">&#10095;</button>
+      </div>
+
+      <div class="dest-controls">
+        <h2 id="destTitle">Destino</h2>
+        <p id="destSubtitle" class="muted"></p>
+
+        <div class="mini-form">
+          <label>Fechas</label>
+          <div class="mini-dates">
+            <input type="date" id="destStart">
+            <input type="date" id="destEnd">
+          </div>
+
+          <label>Estilo de viaje</label>
+          <div id="travelStyle" class="style-options">
+            <button data-style="traditional" class="style-btn active">Tradicional</button>
+            <button data-style="adventure" class="style-btn">Aventurero</button>
+            <button data-style="sightseeing" class="style-btn">Normal</button>
+          </div>
+
+          <label>Presupuesto (USD)</label>
+          <div class="budget-row">
+            <input id="budgetRange" type="range" min="50" max="10000" step="10" value="1000">
+            <div class="budget-display">USD <span id="budgetVal">1000</span></div>
+          </div>
+
+          <div class="min-warning muted" id="minWarning" style="display:none"></div>
+
+          <button id="simulateBtn" class="btn-simulate">Simular opciones</button>
+        </div>
+
+        <div class="itinerary-box">
+          <h3>Itinerario</h3>
+          <div id="itineraryList" class="itinerary-list"></div>
+          <div class="itinerary-total">Total: USD <span id="itineraryTotal">0</span></div>
+          <button id="clearItinerary" class="btn-clear">Limpiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-bottom">
+      <div id="simResults" class="sim-results"></div>
+    </div>
+  </div>
+</div>
+
+<script src="descubrir.js"></script>
+
+</body>
+</html>

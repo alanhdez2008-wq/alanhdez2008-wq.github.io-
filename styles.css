@@ -1,0 +1,1117 @@
+/* styles.css
+   Versión extendida — ItinerarioApp / ViajePro
+   Tema: Cocoon / Nature (verde suave + beige)
+   -- Este archivo contiene:
+      - Header horizontal con botones/iconos (.nav-btn)
+      - Grid de destinos (3 columnas en desktop), thumbnails B (140x90)
+      - Slider / modal de fotos
+      - Estilos para mapa con hotspots
+      - Itinerario lateral
+      - Utilities y responsive
+   Guardar como: styles.css (reemplaza el actual)
+*/
+
+/* ---------------------------
+    Tipografía
+   --------------------------- */
+   
+   * {
+  font-family: "Inter", sans-serif;
+}
+
+/* ---------------------------
+    Espaciados
+   --------------------------- */
+
+  .espacio-izquierda-margin {
+  padding-left: 20px; 
+  padding-right: 20px;
+}
+
+
+/* ---------------------------
+   VARIABLES GLOBALES
+   --------------------------- */
+:root{
+  --bg-1: #f7fbf8;    /* fondo claro */
+  --bg-2: #eef6f2;
+  --card:  #ffffff;
+  --muted: #6b776e;
+  --text:  #0f1f17;
+  --accent: #6fbf73;
+  --accent-2: #a6d9a4;
+  --accent-3: #dfefe0;
+  --danger: #e25b53;
+  --glass: rgba(15,31,23,0.04);
+
+  --nav-height: 64px;
+  --radius-lg: 18px;
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  --shadow-1: 0 6px 20px rgba(15,31,23,0.07);
+  --shadow-2: 0 10px 40px rgba(15,31,23,0.08);
+
+  --max-width: 1240px;
+  --gap: 18px;
+
+  --font-sans: Inter, "Segoe UI", Roboto, -apple-system, "Helvetica Neue", Arial;
+}
+
+/* ---------------------------
+   RESET Y BASE
+   --------------------------- */
+*{ box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+html,body{ height:100%; margin:0; font-family:var(--font-sans); background: linear-gradient(180deg,var(--bg-1),var(--bg-2)); color:var(--text); }
+body{ font-size:16px; line-height:1.45; }
+img{ max-width:100%; display:block; }
+
+/* ---------------------------
+   CONTENEDOR PRINCIPAL
+   --------------------------- */
+.app, .page {
+  max-width: var(--max-width);
+  margin: 20px auto;
+  padding: 20px;
+}
+/* ========================
+   HEADER PRINCIPAL
+======================== */
+
+.main-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 12px 40px;
+  background: var(--card);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+
+/* ----- IZQUIERDA ----- */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+@font-face {
+    font-family: 'MiFuente';
+    src: url('Fuentes/game_of_squids/Game Of Squids.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.brand {
+    font-family: 'MiFuente', sans-serif; /* ← AQUI */
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    color: #ff5757;
+}
+  
+/* ----- CENTRO (botones) ----- */
+.header-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-weight: 700;
+  border-radius: 12px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.05);
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: var(--accent-3);
+  color: #053216;
+  transform: translateY(-3px);
+}
+
+/* ----- DERECHA (botón login) ----- */
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.login-btn-special {
+  padding: 10px 20px;
+  background: #F08D8D; /* rojo pastel */
+  border-radius: 14px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.login-btn-special:hover {
+  background: #e97878;
+  transform: translateY(-3px);
+}
+
+
+/* ---------------------------
+   NAVBAR HORIZONTAL (llamativo)
+   --------------------------- */
+.header, header, .main-header {
+  height: var(--nav-height);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding: 0 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+  border-radius: calc(var(--nav-height) / 3);
+  box-shadow: var(--shadow-1);
+}
+
+
+/* nav menu - horizontal button group */
+.nav, .nav-menu {
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.nav-btn, .nav-menu a {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:12px;
+  background: transparent;
+  border: 1px solid rgba(15,31,23,0.04);
+  color: var(--muted);
+  text-decoration:none;
+  font-weight:700;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+  height:44px;
+}
+.nav-btn span.icon, .nav-btn span {
+  font-size:18px; /* emoji/icon size */
+  display:inline-block;
+  line-height:1;
+}
+
+.login-btn-special {
+  padding: 10px 18px;
+  background: #dd3e3e; /* rojo pastel */
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.login-btn-special:hover {
+  background: #dd3e3e;
+  transform: translateY(-3px);
+}
+
+/* hover/focus states */
+.nav-btn:hover, .nav-menu a:hover, .nav-btn:focus {
+  transform: translateY(-4px);
+  color: var(--text);
+  background: linear-gradient(90deg,var(--accent-3),#fff);
+  box-shadow: 0 10px 28px rgba(107,191,115,0.12);
+  outline: none;
+}
+
+/* active / current - add .active to highlight */
+.nav-btn.active, .nav-menu a.active {
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color: #053216;
+  box-shadow: 0 10px 30px rgba(111,191,115,0.14);
+}
+
+/* ---------------------------
+   HERO (opcional main page)
+   --------------------------- */
+.hero, .hero-text {
+  margin-top:18px;
+  padding:28px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(106,179,106,0.06), rgba(167,217,164,0.03));
+  box-shadow: var(--shadow-2);
+}
+.hero h1 { margin:0; font-size:32px; font-weight:900; }
+.hero p { margin:6px 0 0 0; color:var(--muted); }
+
+/* ---------------------------
+   SECCIONES (estructura general)
+   --------------------------- */
+.section {
+  margin-top:20px;
+  padding: 12px 0;
+}
+.section h2 { font-size:20px; margin:0 0 12px 0; font-weight:800; }
+
+/* ---------------------------
+   BUSCADOR Y GRID DESTINOS (3 columnas)
+   --------------------------- */
+.busqueda-container {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.busqueda-container input[type="text"], .search-input {
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(15,31,23,0.06);
+  background: linear-gradient(180deg,#fff,#fbfdfb);
+  color:var(--text);
+  width: 420px; max-width:100%;
+}
+#searchMsg { color:var(--muted); margin:6px 0 0 0; }
+
+/* Grid: 3 columnas en desktop, 2 tablet, 1 móvil */
+.destinos-grid {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:16px;
+  align-items:start;
+}
+
+/* tarjeta de destino (card) */
+.destino-card, .card-result {
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:12px;
+  border-radius:12px;
+  background: var(--card);
+  border: 1px solid rgba(15,31,23,0.03);
+  box-shadow: var(--shadow-1);
+  cursor:pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.destino-card:hover, .card-result:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(15,31,23,0.08); }
+
+/* thumbnail tamaño B (140x90) */
+.destino-card .thumb, .card-result .thumb {
+  width: 140px;
+  height: 90px;
+  min-width:140px;
+  min-height:90px;
+  border-radius:10px;
+  flex-shrink:0;
+  background-size:cover;
+  background-position:center;
+  box-shadow: 0 8px 20px rgba(15,31,23,0.06);
+}
+
+/* cuerpo de la card */
+.destino-card .card-body, .card-result .card-body {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.card-title { margin:0; font-size:16px; font-weight:800; color:var(--text); }
+.card-meta { margin:0; color:var(--muted); font-size:13px; }
+.card-foot { display:flex; align-items:center; justify-content:space-between; margin-top:8px; }
+
+/* botones pequeños dentro de cards */
+.btn-outline, .btn-small {
+  border-radius:10px;
+  padding:7px 10px;
+  background:transparent;
+  border:1px solid rgba(15,31,23,0.06);
+  cursor:pointer;
+  font-weight:700;
+}
+.btn-ghost { background:transparent; border: none; color: var(--muted); }
+
+/* ---------------------------
+   SLIDER / MODAL DE FOTOS
+   --------------------------- */
+.slider-modal, .modal {
+  position: fixed;
+  inset: 0;
+  display: none; /* mostrar agregando .open o removiendo .hidden */
+  align-items: center;
+  justify-content: center;
+  background: rgba(2,6,6,0.45);
+  z-index: 2000;
+}
+.slider-modal.open, .modal.open { display:flex; }
+
+.slider-content {
+  width: min(920px, 96%);
+  max-width: 920px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 30px 70px rgba(2,6,6,0.45);
+  padding: 18px;
+}
+
+/* contenedor de imágenes en slider */
+.slider-images {
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+  height:380px;
+  background: linear-gradient(180deg,#fff,#f7fbf7);
+}
+.slider-images img {
+  max-height: 100%;
+  max-width:100%;
+  object-fit:cover;
+  border-radius:10px;
+  box-shadow: 0 8px 30px rgba(15,31,23,0.08);
+}
+
+/* botones prev/next sobre slider */
+#prevSlide, #nextSlide {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background: rgba(255,255,255,0.92);
+  border: none;
+  width:44px; height:44px;
+  border-radius:10px;
+  box-shadow: 0 8px 24px rgba(15,31,23,0.08);
+  cursor:pointer;
+  font-size:20px;
+}
+#prevSlide { left:8px; }
+#nextSlide { right:8px; }
+
+#closeSlider {
+  position:absolute;
+  right:12px;
+  top:8px;
+  font-size:22px;
+  cursor:pointer;
+  color:var(--muted);
+}
+
+/* ---------------------------
+   ACTIVIDADES / DESCUBRIR GRID
+   --------------------------- */
+.actividades-grid, .descubrir-grid {
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:14px;
+}
+.actividad-card {
+  background: var(--card);
+  border-radius:12px;
+  padding:12px;
+  box-shadow: var(--shadow-1);
+}
+
+/* ---------------------------
+   ITINERARIO / FORMULARIO DE VIAJE
+   --------------------------- */
+.itinerario-form {
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-bottom:12px;
+  }
+  .itinerario-form input[type="text"], .itinerario-form input[type="date"], .itinerario-form select {
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid rgba(15,31,23,0.06);
+    background:white;
+  }
+  .itinerario-resultados {
+    margin-top:12px;
+    display:grid;
+    gap:10px;
+  }
+
+  /* sidebar itinerario (si usada) */
+  .itinerario-panel {
+    background: var(--card);
+    padding:12px;
+    border-radius:12px;
+    box-shadow: var(--shadow-1);
+  }
+
+  /* item del itinerario */
+  .item-itinerario {
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding:8px;
+    border-radius:10px;
+    background: linear-gradient(180deg, rgba(245,250,246,1), rgba(245,250,246,0.9));
+    border:1px solid rgba(15,31,23,0.03);
+  }
+
+  /* ---------------------------
+    MAPA: imagen con hotspots (estilo preview)
+    --------------------------- */
+  .mapa-contenido {
+    position: relative;
+    border-radius:12px;
+    overflow:hidden;
+    border: 1px solid rgba(15,31,23,0.04);
+    background: linear-gradient(180deg, #fff, #f7fef7);
+    padding:12px;
+  }
+  .mapa-img {
+    width:100%;
+    height:auto;
+    display:block;
+    filter: saturate(0.95) contrast(1.02);
+  }
+
+  /* Hotspots (coloca elementos .hotspot en el HTML usando data-* para info)
+    Example:
+    <button class="hotspot" style="left:45%; top:30%" data-title="París">•</button>
+  */
+  .hotspot {
+    position:absolute;
+    transform: translate(-50%, -50%);
+    width:14px; height:14px;
+    border-radius:999px;
+    background: var(--accent);
+    border: 2px solid #fff;
+    box-shadow: 0 6px 18px rgba(107,191,115,0.18);
+    cursor:pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .hotspot:hover {
+    transform: translate(-50%, -50%) scale(1.25);
+    box-shadow: 0 12px 30px rgba(107,191,115,0.22);
+  }
+
+  /* tooltip simple para hotspots */
+  .hotspot[data-title]:hover::after {
+    content: attr(data-title);
+    position:absolute;
+    top:-32px;
+    left:50%;
+    transform:translateX(-50%);
+    background: rgba(2,6,6,0.9);
+    color:#fff;
+    padding:6px 8px;
+    border-radius:8px;
+    font-size:13px;
+    white-space:nowrap;
+  }
+
+  /* ---------------------------
+    FOOTER
+    --------------------------- */
+  .footer {
+    margin-top:24px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  /* ---------------------------
+    RESPONSIVE
+    --------------------------- */
+  @media (max-width:1100px) {
+    .destinos-grid, .actividades-grid, .descubrir-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .nav-btn { padding:8px 10px; font-size:14px; }
+  }
+
+  @media (max-width:720px) {
+    .destinos-grid, .actividades-grid, .descubrir-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .header, .main-header {
+      padding: 10px;
+      border-radius: 10px;
+      flex-direction: column;
+      gap:8px;
+      height: auto;
+      align-items: flex-start;
+    }
+    .nav { width:100%; display:flex; gap:8px; overflow-x:auto;}
+    .busqueda-container input { width:100%; }
+    .thumb { width: 120px; height: 80px; min-width:120px; min-height:80px; }
+    .slider-images { height:260px; }
+  }
+
+  /* ---------------------------
+    UTILIDADES (helpers)
+    --------------------------- */
+  .hidden { display:none !important; }
+  .muted { color: var(--muted); }
+  .center { display:grid; place-items:center; }
+
+  /* focus visible for accessibility */
+  :focus { outline: 3px solid rgba(111,191,115,0.12); outline-offset: 2px; }
+
+  /* small animations */
+  @keyframes pop { from { transform: translateY(6px); opacity:0 } to { transform:none; opacity:1 } }
+  .card-result, .destino-card, .actividad-card { animation: pop 260ms ease both; }
+
+  /* NEW LOGIN/REGISTER SPLIT STYLE */
+
+  .auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    min-height: 100vh;
+    background: var(--bg);
+  }
+
+  .auth-card-split {
+    width: 900px;
+    height: 520px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 26px;
+    box-shadow: 0 12px 38px rgba(0,0,0,0.15);
+    background: var(--card);
+  }
+
+  /* Ocultar ambos por default */
+  .auth-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(.97);
+    pointer-events: none;
+    transition: opacity .35s ease, transform .35s ease;
+  }
+
+  /* Mostrar panel activo */
+  .auth-panel.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+    z-index: 2;
+  }
+
+  /* Parte de formulario */
+  .panel-form {
+    width: 50%;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+  }
+
+  /* Parte de imagen */
+  .panel-image {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .panel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Slogan */
+  .slogan {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    font-size: 22px;
+    color: white;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  }
+
+  /* Switch button */
+  .switch-btn {
+    background: none;
+    border: none;
+    color: #F08D8D; /* rojo pastel */
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .switch-btn:hover {
+    text-decoration: underline;
+  }
+
+  /* ============================
+    HEADER FIJO + MÁS GRANDE + LOGO REAL
+  ============================= */
+
+  /* Header fijo */
+  .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3000;
+    height: 90px; /* más grande */
+    padding: 20px 40px; /* más aire */
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.93); /* efecto glass */
+  }
+
+  /* Separación para que no tape el contenido */
+  body {
+    padding-top: 110px; 
+  }
+
+  /* Logo más grande */
+  .main-header .logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+
+  /* Ajustar tamaño del texto del nombre de la marca */
+  .main-header .brand {
+    font-size: 50px;
+    font-weight: 900;
+  }
+
+  /* Botones del header más grandes */
+  .main-header .nav-btn {
+    height: 48px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  /* Botón login más grande */
+  .main-header .login-btn-special {
+    height: 48px;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  /* DESTINATION DETAIL MODAL */
+  .dest-modal.hidden { display:none; }
+  .dest-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
+    display: grid;
+    place-items: center;
+  }
+  .dest-modal-bg {
+    position: absolute; inset:0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(2px);
+  }
+  .dest-modal-card {
+    position: relative;
+    width: min(1100px, 96%);
+    max-height: 90vh;
+    overflow: auto;
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    z-index: 4001;
+    padding: 18px;
+  }
+
+  /* close */
+  .dest-close {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--muted);
+  }
+
+  /* grid layout: slider left, controls right */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 18px;
+    align-items: start;
+  }
+
+  /* slider */
+  .dest-slider { position: relative; height: 380px; background: linear-gradient(180deg,#fff,#f7fbf7); border-radius: 10px; overflow: hidden; }
+  .dest-slides { height:100%; display:flex; transition: transform .5s ease; }
+  .dest-slide { min-width:100%; height:100%; background-size:cover; background-position:center; display:flex; align-items:flex-end; padding: 14px; color:#fff; text-shadow:0 4px 18px rgba(0,0,0,0.4); }
+  .dest-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.9); border:none; width:44px; height:44px; border-radius:8px; cursor:pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+  .dest-prev { left:10px; } .dest-next { right:10px; }
+
+  /* controls right column */
+  .dest-controls { padding: 6px 4px; display:flex; flex-direction:column; gap:10px; }
+  .dest-controls h2 { margin:0; font-size:20px; }
+  .dest-controls .muted { color:var(--muted); font-size:14px; margin-top:4px; }
+
+  .mini-form label { display:block; font-weight:700; margin-top:8px; font-size:13px; color:var(--muted); }
+  .mini-dates { display:flex; gap:8px; }
+  .mini-dates input { padding:8px 10px; border-radius:8px; border:1px solid rgba(15,31,23,0.06); }
+
+  .style-options { display:flex; gap:8px; margin-top:6px; }
+  .style-btn { padding:8px 10px; border-radius:10px; border:1px solid rgba(15,31,23,0.06); background:transparent; cursor:pointer; font-weight:700; }
+  .style-btn.active { background: linear-gradient(90deg,var(--accent),var(--accent-2)); color:#053216; box-shadow:0 10px 24px rgba(107,191,115,0.12); }
+
+  .budget-row { display:flex; gap:10px; align-items:center; margin-top:6px; }
+  #budgetRange { width:100%; }
+  .budget-display { min-width:110px; text-align:right; font-weight:800; }
+
+  .min-warning { color:var(--danger); font-size:13px; }
+
+  /* simulate button */
+  .btn-simulate { margin-top:10px; padding:10px; border-radius:10px; background:var(--accent); color:#053216; border:none; cursor:pointer; font-weight:800; }
+
+  /* results area */
+  .dest-bottom { margin-top:12px; }
+  .sim-results { display:flex; gap:12px; flex-direction:column; }
+
+  /* result card */
+  .sim-card { display:flex; gap:10px; align-items:center; padding:10px; border-radius:10px; background:var(--card); border:1px solid rgba(15,31,23,0.04); box-shadow:var(--shadow-1); }
+  .sim-card .sim-left { flex:1; }
+  .sim-card .sim-right { text-align:right; min-width:140px; }
+
+  /* itinerary box */
+  .itinerary-box { margin-top:10px; background: linear-gradient(180deg,#fff,#fbfff8); padding:10px; border-radius:10px; border:1px solid rgba(15,31,23,0.03); }
+  .itinerary-list { display:flex; flex-direction:column; gap:8px; max-height:220px; overflow:auto; margin-top:8px; }
+  .itinerary-item { display:flex; justify-content:space-between; gap:8px; padding:8px; border-radius:8px; background:rgba(245,250,246,0.9); border:1px solid rgba(15,31,23,0.03); }
+  .itinerary-total { margin-top:8px; font-weight:900; text-align:right; }
+
+  /* small screens */
+  @media (max-width:980px) {
+    .dest-grid { grid-template-columns: 1fr; }
+    .dest-slider { height: 280px; }
+  }
+
+  /* ========= MODAL GENERAL ========= */
+  .dest-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+  }
+
+  .dest-modal.hidden {
+    display: none;
+  }
+
+  .dest-modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    z-index: 1;
+  }
+
+  /* ========= CARD ========= */
+  .dest-modal-card {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+
+  .dest-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  /* ========= GRID ========= */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .dest-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ========= SLIDER ========= */
+  .dest-slider {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .dest-slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    border-radius: 10px;
+  }
+
+  .dest-slides img.active {
+    display: block;
+  }
+
+  .dest-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 25px;
+  }
+
+  .dest-prev { left: 10px; }
+  .dest-next { right: 10px; }
+
+  /* ========= CONTROLS ========= */
+  .dest-controls h2 {
+    margin-top: 0;
+  }
+
+  .mini-form label {
+    margin-bottom: 4px;
+    display: block;
+    font-weight: 600;
+  }
+
+  .mini-form input[type="date"] {
+    width: 48%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .style-options {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  .style-btn {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #eee;
+    cursor: pointer;
+  }
+
+  .style-btn.active {
+    background: #0078ff;
+    color: #fff;
+    border-color: #005fcc;
+  }
+
+  .budget-row {
+    margin: 10px 0;
+  }
+
+  .budget-display {
+    font-weight: bold;
+  }
+
+  /* ========= SIM RESULTS ========= */
+  .sim-results {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+  }
+
+  /* ========= ITINERARIO ========= */
+  .itinerary-box {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 10px;
+  }
+
+  .itinerary-list div {
+    padding: 6px 0;
+  }
+
+  .itinerary-total {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .btn-clear {
+    width: 100%;
+    margin-top: 10px;
+    background: #d9534f;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .btn-simulate {
+    width: 100%;
+    background: #0078ff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .delete-btn {
+    background-color: #e53935; /* rojo fuerte */
+    color: #fff;               /* X en blanco */
+    border: none;
+    border-radius: 50%;        /* redondo */
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.2s;
+  }
+
+  .delete-btn:hover {
+    background-color: #c62828; /* rojo un poco más oscuro */
+  }
+
+/* ---------------------------
+   BUSCADOR Y GRID DESTINOS (3 columnas)
+   --------------------------- */
+.busqueda-container {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.busqueda-container input[type="text"], .search-input {
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(15,31,23,0.06);
+  background: linear-gradient(180deg,#fff,#fbfdfb);
+  color:var(--text);
+  width: 420px; max-width:100%;
+}
+#searchMsg { color:var(--muted); margin:6px 0 0 0; }
+
+/* Grid: 3 columnas en desktop, 2 tablet, 1 móvil */
+.destinos-grid {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:16px;
+  align-items:start;
+}
+
+/* ===== BOTÓN ROJO DE ELIMINAR (X) ===== */
+.delete-btn,
+.remove-btn,
+.remove-item,
+.itinerary-remove {
+  background-color: #e53935; /* rojo */
+  color: #fff;               /* X blanca */
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 8px; /* se separa del texto */
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover,
+.remove-btn:hover,
+.remove-item:hover,
+.itinerary-remove:hover {
+  background-color: #c62828; /* tono más oscuro */
+}
+
+/* ==== BOTÓN VER MÁS ==== */
+.btn-ver {
+  background: #81c784;        /* verde pastel */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;        /* ovalado */
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.btn-ver:hover {
+  background: #66bb6a;        /* un verde pastel más fuerte */
+  transform: translateY(-2px);
+}
+
+.btn-ver:active {
+  background: #57a05c;        /* un poco más oscuro cuando se presiona */
+  transform: translateY(0);
+}
+
+
+  /* ---------------------------
+    NOTAS IMPORTANTES (edición de imágenes)
+    ---------------------------
+    - Las miniaturas de cada destino (thumb) se establecen desde JS como:
+        thumb.style.backgroundImage = `url('ruta/de/imagen.jpg')`
+      o bien con una etiqueta <img> dentro de la card si prefieres HTML.
+    - Para cambiar imágenes por país reemplaza las rutas en el array de destinos
+      dentro de app.js (propiedad `image` o `images`).
+    - El slider se alimenta desde JS con una lista de URLs (recomendado: campo images: [])
+    - Hotspots del mapa: puedes colocarlos manualmente en el HTML o generarlos desde JS
+      usando la posición en % (left/top). Ejemplo:
+        <button class="hotspot" style="left:46%; top:32%" data-title="París"></button>
+    - Si quieres un tema oscuro alterno, puedo añadir variables y toggle en la siguiente iteración.
+  */
+
+  /* FIN styles.css */

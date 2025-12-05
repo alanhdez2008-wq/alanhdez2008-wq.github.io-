@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>VIA – Acceder</title>
+  <link rel="stylesheet" href="auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+<div class="auth-wrapper">
+  <div class="auth-card-split">
+
+    <!-- LOGIN PANEL -->
+    <div class="panel active" id="loginPanel">
+
+
+      <div class="panel-form">
+        <h2>Iniciar Sesión</h2>
+
+        <div class="input-group">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="correo@ejemplo.com">
+        </div>
+
+        <div class="input-group">
+          <label>Contraseña</label>
+          <input type="password" placeholder="********">
+        </div>
+
+        <button class="btn-primary" onclick="goHome()">Entrar</button>
+
+        <p>
+          ¿No tienes cuenta?
+          <button class="switch-btn" onclick="goRegister()">Registrarme</button>
+        </p>
+      </div>
+
+      <div class="panel-image">
+        <img src="Imagenes/1.png" alt="">
+      </div>
+
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div class="panel move-right" id="registerPanel">
+
+      <div class="panel-image">
+        <img src="Imagenes/2.png" alt="">
+      </div>
+
+      <div class="panel-form">
+        <h2>Crear Cuenta</h2>
+
+        <div class="input-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Juan">
+        </div>
+
+        <div class="input-group">
+          <label>Apellido</label>
+          <input type="text" placeholder="Cruz">
+        </div>
+
+        <div class="input-group">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="correo@ejemplo.com">
+        </div>
+
+        <div class="input-group">
+          <label>Número telefónico</label>
+          <input type="tel" placeholder="55 1234 5678">
+        </div>
+
+        <div class="input-group">
+          <label>Contraseña</label>
+          <input type="password" placeholder="********">
+        </div>
+
+        <button class="btn-primary" onclick="goHome()">Crear Cuenta</button>
+
+        <p>
+          ¿Ya tienes una cuenta?
+          <button class="switch-btn" onclick="goLogin()">Iniciar Sesión</button>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+</html>
+
